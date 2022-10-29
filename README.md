@@ -1,8 +1,11 @@
 This is just a sample Mockserver and you can change or customize it to fit your needs using the provided examples in the code.
 
 To start:
+
 1- Clone this repo
+
 2- cd to mockserver dir
+
 3- run "docker-compose up"
 
 The server will start on port 1080 by default " - http://localhost:1080/" but you can change that in the yml file.
