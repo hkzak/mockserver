@@ -13,6 +13,7 @@ The server will start on port 1080 by default " - http://localhost:1080/" but yo
 To test the API open postman and make a get request to the following endpoints:
 
 1- POST "http://localhost:1080//api/v1/image/upload" this endpoint accepts an image and returns json response:
+
 {
 "Result": "Success",
 "Message": "Image is being processed (File: image.png Size: 475Kb)",\
