@@ -1,0 +1,116 @@
+[
+    {
+        "httpRequest" : {
+            "method" : "POST",
+            "path" : "/api/v1/image/upload",
+            "body":{
+              "type": "BINARY",
+              "contentType": "form-data; charset=utf-8",
+              "matchType": "STRICT"
+            }
+            },
+            "httpResponseTemplate": {
+                "template": "{\"statusCode\": 200, \"body\": {\"Result\": \"Success\",\"Message\": \"Image is being processed (File: image.png Size: 475Kb)\",\"processId\": $math.random(1, 2) }}",
+                "templateType": "VELOCITY"
+              }
+        },
+        {
+            "httpRequest": {
+                "method": "GET",
+                "path": "/api/v1/image/status",
+                "body":{
+                  "processId": 1
+                }
+              },
+              "httpResponse": {
+                "statusCode": 200,
+                "body": {
+                    "Result": "Success",
+                    "Message": "processId 1 is completed",
+                    "Percentage": 100
+                }
+              }
+            },
+           {
+            "httpRequest" : {
+              "method" : "GET",
+              "path" : "/api/v1/image/result",
+              "body" : {
+                "processId" : 1
+              }
+            },
+            "httpResponse" : {
+              "statusCode" : 200,
+              "body" : {
+                "Version" : "1.1",
+                "Documents" : [ {
+                  "DocumentState" : "Correct",
+                  "DocumentData" : {
+                    "Name" : "Document",
+                    "$type" : "Document",
+                    "Sections" : [ {
+                      "Name" : "PageWithMrz",
+                      "$type" : "Section",
+                      "BlockRef" : 1,
+                      "Items" : [ {
+                        "BlockRef" : 2,
+                        "Index" : 0,
+                        "Fields" : [ {
+                          "Name" : "RequiresVerification",
+                          "$type" : "Checkmark",
+                          "IsSuspicious" : false,
+                          "Value" : true
+                        }]
+                        }]
+                    }]
+                    }
+                }]
+                }
+            }
+        },
+        {
+            "httpRequest": {
+                "method": "GET",
+                "path": "/api/v1/image/status",
+                "body": {
+                "type": "JSON",
+                "processId": [
+                    {
+                    "schema": {
+                        "typ": "integer"
+                    }
+                    }
+                ]
+                }
+            },
+            "httpResponse": {
+                "statusCode": 400,
+                "body":{
+                "Result": "Bad Request! Invalid or missing processId"
+                }
+            }
+        },
+        {
+            "httpRequest": {
+                "method": "GET",
+                "path": "/api/v1/image/result",
+                "body": {
+                    "type": "JSON",
+                    "processId": [
+                    {
+                        "schema": {
+                        "typ": "integer"
+                        }
+                    }
+                    ]
+                }
+                },
+                "httpResponse": {
+                "statusCode": 400,
+                "body":{
+                    "Result": "Bad Request! Invalid or missing ProcessId"
+                }
+                }
+        }
+
+]
