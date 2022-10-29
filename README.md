@@ -33,3 +33,9 @@ https://www.mock-server.com/mock_server/running_mock_server.html#docker_containe
 
 You can also check the mockserver UI dashboard to check when api calls dont match
 
+
+NOTE: 
+The last two requests are error handling lets take the endpoint "/api/v1/image/status" line 72, as an example:
+To call the status endpoint you need to provide a processId with value of "1" because its the only endpoint we added so if you provided a processId with a value other than 1 you will get the default response which is "Bad Request! Invalid or missing processId" and thats how we do error handling, the body is generic not specific values.
+
+
