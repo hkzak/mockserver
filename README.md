@@ -8,6 +8,7 @@ To start:
 The server will start on port 1080 by default " - http://localhost:1080/" but you can change that in the yml file.
 
 To test the API open postman and make a get request to the following endpoints:
+
 1- POST "http://localhost:1080//api/v1/image/upload" this endpoint accepts an image and returns json response:
 {
 "Result": "Success",
